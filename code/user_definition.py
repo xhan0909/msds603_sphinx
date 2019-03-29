@@ -1,5 +1,0 @@
-ec2_address = "ec2-54-212-242-75.us-west-2.compute.amazonaws.com"
-user = "ec2-user"
-key_file = "/OneDrive/licenses/xhan-oregon.pem"
-git_repo_name = "msds603_hw"
-git_user_id = "xhan0909"
