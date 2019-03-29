@@ -41,11 +41,16 @@
     <span class="k">return</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="ssh_connection"><a class="viewcode-back" href="../code.html#hw_sphinx_Han_Xiao.ssh_connection">[docs]</a><span class="k">def</span> <span class="nf">ssh_connection</span><span class="p">(</span><span class="n">ssh</span><span class="p">,</span> <span class="n">ec2_address</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">key_file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create connection to remote server.&quot;&quot;&quot;</span>
     <span class="n">ssh</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
     <span class="n">ssh</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ec2_address</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">key_filename</span><span class="o">=</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">key_file</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ssh</span></div>
 
 <div class="viewcode-block" id="create_or_update_environment"><a class="viewcode-back" href="../code.html#hw_sphinx_Han_Xiao.create_or_update_environment">[docs]</a><span class="k">def</span> <span class="nf">create_or_update_environment</span><span class="p">(</span><span class="n">ssh</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create working environment.</span>
+<span class="sd">    If the environment already exists, update it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> \
                     <span class="n">ssh</span><span class="o">.</span><span class="n">exec_command</span><span class="p">(</span><span class="s2">&quot;conda env create -f &quot;</span>
                              <span class="s2">&quot;~/msds603_hw/env_MSDS603.yml&quot;</span><span class="p">)</span>
@@ -56,6 +61,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../code.html#hw_sphinx_Han_Xiao.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Main program&quot;&quot;&quot;</span>
     <span class="n">ec2_address</span> <span class="o">=</span> <span class="s2">&quot;ec2-54-212-242-75.us-west-2.compute.amazonaws.com&quot;</span>
     <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;ec2-user&quot;</span>
     <span class="n">key_file</span> <span class="o">=</span> <span class="s2">&quot;/OneDrive/licenses/xhan-oregon.pem&quot;</span>
